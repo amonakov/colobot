@@ -98,8 +98,10 @@ BOOL CTaskGoto::EventProcess(const Event &event)
         rot.x = m_leakPos.x-pos.x;
         rot.y = m_leakPos.z-pos.z;
         dist = Length(rot.x, rot.y);
-        rot.x /= dist;
-        rot.y /= dist;
+        if (dist != 0) {
+            rot.x /= dist;
+            rot.y /= dist;
+        }
 
         a = m_object->RetAngleY(0);
         g = RotateAngle(rot.x, -rot.y);  // CW !
